@@ -45,7 +45,7 @@ module Vault
     # @param [String] description
     #   a human-friendly description (optional)
     def mount(path, type, description = nil)
-      payload = { type: type }
+      payload = { :type => type }
       payload[:description] = description if !description.nil?
 
       client.post("/v1/sys/mounts/#{encode_path(path)}", JSON.fast_generate(payload))
@@ -94,8 +94,8 @@ module Vault
     # @return [true]
     def remount(from, to)
       client.post("/v1/sys/remount", JSON.fast_generate(
-        from: from,
-        to:   to,
+        :from => from,
+        :to   => to,
       ))
       return true
     end
