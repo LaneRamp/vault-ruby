@@ -121,7 +121,7 @@ end
     ::Thread.current[@key] ||= []
   end
 
-  class Wrapper < ::BasicObject
+  class Wrapper
     METHODS = [:with, :pool_shutdown]
 
     def initialize(options = {}, &block)
