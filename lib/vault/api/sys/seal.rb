@@ -9,7 +9,7 @@ module Vault
     #     status.sealed? #=> true
     #
     #   @return [Boolean]
-    field :sealed, as: :sealed?
+    field :sealed, :as => :sealed?
 
     # @!attribute t
     #   Threshold of keys required to unseal the Vault.
@@ -73,7 +73,7 @@ module Vault
     # @return [SealStatus]
     def unseal(shard)
       json = client.put("/v1/sys/unseal", JSON.fast_generate(
-        key: shard,
+        :key => shard,
       ))
       return SealStatus.decode(json)
     end
