@@ -87,7 +87,7 @@ end
   def checkout(options = {})
     conn = if stack.empty?
       timeout = options[:timeout] || @timeout
-      @available.pop(timeout: timeout)
+      @available.pop(:timeout => timeout)
     else
       stack.last
     end
