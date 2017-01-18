@@ -15,7 +15,7 @@ module Vault
     #     secret.auth.client_token #=> "fdb29070-6379-70c9-ca3a-46152fb66de1"
     #
     #   @return [SecretAuth, nil]
-    field :auth, load: ->(v) { SecretAuth.decode(v) }
+    field :auth, :load => ->(v) { SecretAuth.decode(v) }
 
     # @!attribute [r] data
     #   Arbitrary data returned by the secret. The keys returned are dependent
@@ -28,7 +28,7 @@ module Vault
     #     secret.data[:ttl] #=> 0
     #
     #   @return [Hash<Symbol, Object>]
-    field :data, freeze: true
+    field :data, :freeze => true
 
     # @!attribute [r] lease_duration
     #   The number of seconds this lease is valid. If this number is 0 or nil,
@@ -61,7 +61,7 @@ module Vault
     #     secret.renewable? #=> false
     #
     #   @return [Boolean]
-    field :renewable, as: :renewable?
+    field :renewable, :as => :renewable?
 
     # @!attribute [r] warnings
     #   List of warnings returned by the Vault server. These are returned by the
@@ -73,12 +73,12 @@ module Vault
     #     result.warnings #=> ["This path has been deprecated"]
     #
     #   @return [Array<String>, nil]
-    field :warnings, freeze: true
+    field :warnings, :freeze => true
 
     # @!attribute [r] wrap_info
     #   Wrapped information sent with the request (only present in Vault 0.6+).
     #   @return [WrapInfo, nil]
-    field :wrap_info, load: ->(v) { WrapInfo.decode(v) }
+    field :wrap_info, :load => ->(v) { WrapInfo.decode(v) }
   end
 
   # SecretAuth is a struct that contains the information about auth data, if
@@ -107,7 +107,7 @@ module Vault
     #     auth.metadata #=> { :username => "sethvargo" }
     #
     #   @return [Hash<Symbol, Object>, nil]
-    field :metadata, freeze: true
+    field :metadata, :freeze => true
 
     # @!attribute [r] policies
     #   List of policies attached to this authentication.
@@ -116,7 +116,7 @@ module Vault
     #     auth.policies #=> ["default"]
     #
     #   @return [Array<String>, nil]
-    field :policies, freeze: true
+    field :policies, :freeze => true
 
     # @!attribute [r] renewable
     #   Returns whether this authentication is renewable.
@@ -125,7 +125,7 @@ module Vault
     #     auth.renewable? #=> false
     #
     #   @return [Boolean]
-    field :renewable, as: :renewable?
+    field :renewable, :as => :renewable?
   end
 
   # WrapInfo is the information returned by a wrapped response. This is almost
@@ -144,7 +144,7 @@ module Vault
     # @!attribute [r] creation_time
     #   Date & time when the wrapped token was created
     #   @return [Time]
-    field :creation_time, load: ->(v) { Time.parse(v) }
+    field :creation_time, :load => ->(v) { Time.parse(v) }
 
     # @!attribute [r] ttl
     #   The TTL on the token returned in seconds.
