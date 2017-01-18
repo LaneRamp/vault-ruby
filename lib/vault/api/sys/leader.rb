@@ -3,17 +3,17 @@ module Vault
     # @!method ha_enabled?
     #   Returns whether the high-availability mode is enabled.
     #   @return [Boolean]
-    field :ha_enabled, as: :ha_enabled?
+    field :ha_enabled, :as => :ha_enabled?
 
     # @!method leader?
     #   Returns whether the Vault server queried is the leader.
     #   @return [Boolean]
-    field :is_self, as: :leader?
+    field :is_self, :as => :leader?
 
     # @!attribute [r] address
     #   URL where the server is running.
     #   @return [String]
-    field :leader_address, as: :address
+    field :leader_address, :as => :address
 
     # @deprecated Use {#ha_enabled?} instead
     def ha?; ha_enabled?; end
