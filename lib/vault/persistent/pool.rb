@@ -20,7 +20,7 @@ class PersistentHTTP::Pool < Vault::ConnectionPool # :nodoc:
     conn = stack.pop
 
     if stack.empty?
-      @available.push conn, connection_args: net_http_args
+      @available.push conn, :connection_args => net_http_args
     end
 
     nil
