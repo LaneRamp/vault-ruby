@@ -75,7 +75,7 @@ module Vault
         :stored_shares      => options.fetch(:stored_shares, nil),
         :recovery_shares    => options.fetch(:recovery_shares, nil),
         :recovery_threshold => options.fetch(:recovery_threshold, nil),
-        :recovery_pgp_keys  => options.fetch(:recovery_pgp_keys, nil),
+        :recovery_pgp_keys  => options.fetch(:recovery_pgp_keys, nil)
       ))
       return InitResponse.decode(json)
     end
