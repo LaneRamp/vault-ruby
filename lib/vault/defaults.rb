@@ -27,6 +27,16 @@ module Vault
     RETRY_MAX_WAIT = 2.0
 
     class << self
+      
+      def public_send(method, *args, &block)
+        if respond_to?(method) && !protected_methods.include?(method.to_s)
+          send(method, *args, &block)
+        else
+          :foo.generate_a_no_method_error_in_preparation_for_method_missing rescue nil
+          method_missing(method.to_sym, *args, &block)
+        end
+      end
+      
       # The list of calculated options for this configurable.
       # @return [Hash]
       def options
