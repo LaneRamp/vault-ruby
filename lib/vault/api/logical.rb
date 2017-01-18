@@ -109,7 +109,7 @@ module Vault
         end
 
         # Extract the response and parse it into a new secret.
-        json = JSON.parse(secret.data[:response], symbolize_names: true)
+        json = JSON.parse(secret.data[:response], :symbolize_names => true)
         secret = Secret.decode(json)
         return secret
       end
