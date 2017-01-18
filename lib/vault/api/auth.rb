@@ -67,7 +67,7 @@ module Vault
     #
     # @return [Secret]
     def app_id(app_id, user_id, options = {})
-      payload = { app_id: app_id, user_id: user_id }.merge(options)
+      payload = { :app_id => app_id, :user_id => user_id }.merge(options)
       json = client.post("/v1/auth/app-id/login", JSON.fast_generate(payload))
       secret = Secret.decode(json)
       client.token = secret.auth.client_token
@@ -90,7 +90,7 @@ module Vault
     #
     # @return [Secret]
     def approle(role_id, secret_id=nil)
-      payload = { role_id: role_id }
+      payload = { :role_id => role_id }
       payload[:secret_id] = secret_id if secret_id
       json = client.post("/v1/auth/approle/login", JSON.fast_generate(payload))
       secret = Secret.decode(json)
@@ -116,7 +116,7 @@ module Vault
     #
     # @return [Secret]
     def userpass(username, password, options = {})
-      payload = { password: password }.merge(options)
+      payload = { :password => password }.merge(options)
       json = client.post("/v1/auth/userpass/login/#{encode_path(username)}", JSON.fast_generate(payload))
       secret = Secret.decode(json)
       client.token = secret.auth.client_token
@@ -138,7 +138,7 @@ module Vault
     #
     # @return [Secret]
     def ldap(username, password, options = {})
-      payload = { password: password }.merge(options)
+      payload = { :password => password }.merge(options)
       json = client.post("/v1/auth/ldap/login/#{encode_path(username)}", JSON.fast_generate(payload))
       secret = Secret.decode(json)
       client.token = secret.auth.client_token
@@ -156,7 +156,7 @@ module Vault
     #
     # @return [Secret]
     def github(github_token)
-      payload = {token: github_token}
+      payload = { :token => github_token }
       json = client.post("/v1/auth/github/login", JSON.fast_generate(payload))
       secret = Secret.decode(json)
       client.token = secret.auth.client_token
@@ -177,7 +177,7 @@ module Vault
     #
     # @return [Secret]
     def aws_ec2(role, pkcs7, nonce)
-      payload = { role: role, pkcs7: pkcs7, nonce: nonce }
+      payload = { :role => role, :pkcs7 => pkcs7, :nonce => nonce }
       json = client.post('/v1/auth/aws-ec2/login', JSON.fast_generate(payload))
       secret = Secret.decode(json)
       client.token = secret.auth.client_token
