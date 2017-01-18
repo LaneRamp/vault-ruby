@@ -33,7 +33,7 @@ require_relative 'connection_pool/timed_stack'
 #
 module Vault
 class ConnectionPool
-  DEFAULTS = {size: 5, timeout: 5}
+  DEFAULTS = {:size => 5, :timeout => 5}
 
   class Error < RuntimeError
   end
