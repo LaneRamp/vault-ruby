@@ -28,7 +28,7 @@ module Vault
     # @return [Hash]
     def extract_headers!(options = {})
       extract = {
-        wrap_ttl: Vault::Client::WRAP_TTL_HEADER,
+        :wrap_ttl => Vault::Client::WRAP_TTL_HEADER,
       }
 
       {}.tap do |h|
