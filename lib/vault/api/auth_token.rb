@@ -111,7 +111,7 @@ module Vault
     def lookup(token, options = {})
       headers = extract_headers!(options)
       json = client.post("/v1/auth/token/lookup", JSON.fast_generate(
-        token: token,
+        :token => token,
       ), headers)
       return Secret.decode(json)
     end
@@ -126,7 +126,7 @@ module Vault
     def lookup_accessor(accessor, options = {})
       headers = extract_headers!(options)
       json = client.post("/v1/auth/token/lookup-accessor", JSON.fast_generate(
-        accessor: accessor,
+        :accessor => accessor,
       ), headers)
       return Secret.decode(json)
     end
@@ -155,8 +155,8 @@ module Vault
     def renew(token, increment = 0, options = {})
       headers = extract_headers!(options)
       json = client.put("/v1/auth/token/renew", JSON.fast_generate(
-        token: token,
-        increment: increment,
+        :token => token,
+        :increment => increment,
       ), headers)
       return Secret.decode(json)
     end
@@ -172,7 +172,7 @@ module Vault
     def renew_self(increment = 0, options = {})
       headers = extract_headers!(options)
       json = client.put("/v1/auth/token/renew-self", JSON.fast_generate(
-        increment: increment,
+        :increment => increment,
       ), headers)
       return Secret.decode(json)
     end
@@ -199,7 +199,7 @@ module Vault
     def revoke_orphan(token, options = {})
       headers = extract_headers!(options)
       client.put("/v1/auth/token/revoke-orphan", JSON.fast_generate(
-        token: token,
+        :token => token,
       ), headers)
       return true
     end
@@ -216,7 +216,7 @@ module Vault
     def revoke_accessor(accessor, options = {})
       headers = extract_headers!(options)
       client.put("/v1/auth/accessor/revoke-accessor", JSON.fast_generate(
-        accessor: accessor,
+        :accessor => accessor,
       ), headers)
       return true
     end
@@ -233,7 +233,7 @@ module Vault
     def revoke(token, options = {})
       headers = extract_headers!(options)
       client.put("/v1/auth/token/revoke", JSON.fast_generate(
-        token: token,
+        :token => token,
       ), headers)
       return true
     end
