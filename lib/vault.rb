@@ -1,14 +1,15 @@
-module Vault
-  def require_relative(relative_feature)
-    c = caller.first
-    fail "Can't parse #{c}" unless c.rindex(/:\d+(:in `.*')?$/)
-    file = $`
-    if /\A\((.*)\)/ =~ file 
-      raise LoadError, "require_relative is called in #{$1}"
-    end
-    absolute = File.expand_path(relative_feature, File.dirname(file))
-    require absolute
+def require_relative(relative_feature)
+  c = caller.first
+  fail "Can't parse #{c}" unless c.rindex(/:\d+(:in `.*')?$/)
+  file = $`
+  if /\A\((.*)\)/ =~ file 
+    raise LoadError, "require_relative is called in #{$1}"
   end
+  absolute = File.expand_path(relative_feature, File.dirname(file))
+  require absolute
+end
+
+module Vault
   
   require_relative "vault/client"
   require_relative "vault/configurable"
