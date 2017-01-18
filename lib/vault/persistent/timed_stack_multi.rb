@@ -39,7 +39,7 @@ class PersistentHTTP::TimedStackMulti < ConnectionPool::TimedStack # :nodoc:
 
   def shutdown_connections # :nodoc:
     @ques.each_key do |key|
-      super connection_args: key
+      super :connection_args => key
     end
   end
 
