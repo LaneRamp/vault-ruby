@@ -525,7 +525,7 @@ class PersistentHTTP
     @socket_options << [Socket::IPPROTO_TCP, Socket::TCP_NODELAY, 1] if
       Socket.const_defined? :TCP_NODELAY
 
-    @pool = PersistentHTTP::Pool.new size: pool_size do |http_args|
+    @pool = PersistentHTTP::Pool.new :size => pool_size do |http_args|
       PersistentHTTP::Connection.new Net::HTTP, http_args, @ssl_generation
     end
 
