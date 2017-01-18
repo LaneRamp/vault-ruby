@@ -31,9 +31,9 @@ module Vault
 
     # The default list of options to use when parsing JSON.
     JSON_PARSE_OPTIONS = {
-      max_nesting:      false,
-      create_additions: false,
-      symbolize_names:  true,
+      max_nesting      => false,
+      create_additions => false,
+      symbolize_names  => true,
     }.freeze
 
     RESCUED_EXCEPTIONS = [].tap do |a|
