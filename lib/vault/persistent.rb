@@ -923,7 +923,9 @@ class PersistentHTTP
     retried      = false
     bad_response = false
 
-    uri      = URI uri
+    unless uri.is_a?(URI)
+      uri = URI uri
+    end
     req      = request_setup req || uri
     response = nil
 
