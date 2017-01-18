@@ -22,7 +22,7 @@ module Vault
     # @!method initialized?
     #   Returns whether the Vault server is initialized.
     #   @return [Boolean]
-    field :initialized, as: :initialized?
+    field :initialized, :as => :initialized?
   end
 
   class Sys
@@ -68,14 +68,14 @@ module Vault
     # @return [InitResponse]
     def init(options = {})
       json = client.put("/v1/sys/init", JSON.fast_generate(
-        root_token_pgp_key: options.fetch(:root_token_pgp_key, nil),
-        secret_shares:      options.fetch(:secret_shares, options.fetch(:shares, 5)),
-        secret_threshold:   options.fetch(:secret_threshold, options.fetch(:threshold, 3)),
-        pgp_keys:           options.fetch(:pgp_keys, nil),
-        stored_shares:      options.fetch(:stored_shares, nil),
-        recovery_shares:    options.fetch(:recovery_shares, nil),
-        recovery_threshold: options.fetch(:recovery_threshold, nil),
-        recovery_pgp_keys:  options.fetch(:recovery_pgp_keys, nil),
+        :root_token_pgp_key => options.fetch(:root_token_pgp_key, nil),
+        :secret_shares      => options.fetch(:secret_shares, options.fetch(:shares, 5)),
+        :secret_threshold   => options.fetch(:secret_threshold, options.fetch(:threshold, 3)),
+        :pgp_keys           => options.fetch(:pgp_keys, nil),
+        :stored_shares      => options.fetch(:stored_shares, nil),
+        :recovery_shares    => options.fetch(:recovery_shares, nil),
+        :recovery_threshold => options.fetch(:recovery_threshold, nil),
+        :recovery_pgp_keys  => options.fetch(:recovery_pgp_keys, nil),
       ))
       return InitResponse.decode(json)
     end
