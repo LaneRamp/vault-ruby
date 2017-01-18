@@ -114,7 +114,7 @@ module Vault
     #
     # @return [true]
     def set_role_id(name, role_id)
-      options = { role_id: role_id }
+      options = { :role_id => role_id }
       client.post("/v1/auth/approle/role/#{encode_path(name)}/role-id", JSON.fast_generate(options))
       return true
     end
@@ -180,7 +180,7 @@ module Vault
     #
     # @return [Secret, nil]
     def secret_id(role_name, secret_id)
-      opts = { secret_id: secret_id }
+      opts = { :secret_id => secret_id }
       json = client.post("/v1/auth/approle/role/#{encode_path(role_name)}/secret-id/lookup", JSON.fast_generate(opts), {})
       return nil unless json
       return Secret.decode(json)
