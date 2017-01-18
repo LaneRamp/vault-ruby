@@ -83,7 +83,7 @@ module Vault
       @lock.synchronize do
         return @nhp if @nhp
 
-        @nhp = PersistentHTTP.new(name: "vault-ruby")
+        @nhp = PersistentHTTP.new(:name => "vault-ruby")
 
         if hostname
           @nhp.hostname = hostname
@@ -185,7 +185,7 @@ module Vault
     # Perform a LIST request.
     # @see Client#request
     def list(path, params = {}, headers = {})
-      params = params.merge(list: true)
+      params = params.merge(:list => true)
       request(:get, path, params, headers)
     end
 
